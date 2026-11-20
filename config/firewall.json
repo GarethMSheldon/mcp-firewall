@@ -1,0 +1,22 @@
+{
+  "upstream": {
+    "command": ["python", "examples/echo_server.py"],
+    "cwd": "..",
+    "env": {}
+  },
+  "policy": {
+    "default_action": "deny",
+    "allow_tools": ["echo", "get_status"],
+    "deny_tools": ["*delete*", "*remove*", "*execute*", "*shell*", "*terminal*"],
+    "max_message_bytes": 1048576,
+    "max_argument_bytes": 65536,
+    "max_argument_depth": 12,
+    "blocked_argument_keys": ["password", "passwd", "api_key", "access_token", "refresh_token"],
+    "blocked_string_patterns": []
+  },
+  "audit": {
+    "path": "../logs/mcp-firewall.jsonl",
+    "max_bytes": 5000000,
+    "backup_count": 5
+  }
+}
